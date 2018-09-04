@@ -47,9 +47,11 @@ function drawJSON(data) {
 
 function saveFile() {
     for (let i = 0; i < switches.length; i++){
-        console.log(switches[i].objJSON);
-        switchesJSON.push(switches[i].objJSON);
+        switchesJSON.push(JSON.stringify(switches[i].objJSON));
     }
+    // NEED TO SAVE TO FILE HERE!!!!
+    saveJSON(switchesJSON, 'switches.json')
+
     console.log(switchesJSON);
 }
 
@@ -58,7 +60,7 @@ function MeSquare(host, x, y) {
     this.pos = createVector(x, y);
     this.size = createVector(10, 10);
     this.dragging = false;
-    this.objJSON = "{ host: " + this.host + ", posX: " + this.pos.x + ", posY: " + this.pos.y + "}";
+    this.objJSON = { "host":  this.host , "posX":  this.pos.x , "posY":  this.pos.y };
 
 
     this.display = function() {
