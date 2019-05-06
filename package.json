@@ -1,0 +1,14 @@
+{
+  "name": "ugly-map",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index",
+    "start": "node index"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
