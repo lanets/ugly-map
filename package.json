@@ -9,7 +9,7 @@
   },
   "keywords": [],
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.19.0"
   },
   "dependencies": {
     "vis": "^4.21.0"
