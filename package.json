@@ -10,5 +10,8 @@
   "keywords": [],
   "devDependencies": {
     "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "vis": "^4.21.0"
   }
 }
