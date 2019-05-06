@@ -2,16 +2,17 @@
   "name": "ugly-map",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index",
-    "start": "node index"
+    "dev": "nodemon public/server.js",
+    "start": "node public/server.js"
   },
   "keywords": [],
   "devDependencies": {
     "nodemon": "^1.19.0"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "vis": "^4.21.0"
   }
 }
