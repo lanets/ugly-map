@@ -21,6 +21,26 @@ function draw() {
     }
 }
 
+
+function loadData() {
+    data = res.data.result;
+    for (let i = 0; i < data.length; i++) {
+        let r = data[i];
+
+        if (!nodes.has(r.metric.instance)) {
+            nodes.set(r.metric.instance, new Node(r.metric.instance, 50, 50));
+        }
+        nodes.get(r.metric.instance).setStatus(r.value[1]);
+    }
+
+}
+
+function exportPos() {
+    for (let node of nodes.values()) {
+        
+    }
+}
+
 function mouseDragged() {
     for (let node of nodes.values()) {
         node.move();
@@ -39,24 +59,5 @@ function mousePressed() {
 function mouseReleased() {
     for (let node of nodes.values()) {
         node.deactivate();
-    }
-}
-
-function loadData() {
-    data = res.data.result;
-    for (let i = 0; i < data.length; i++) {
-        let r = data[i];
-
-        if (!nodes.has(r.metric.instance)) {
-            nodes.set(r.metric.instance, new Node(r.metric.instance, 50, 50));
-        }
-        nodes.get(r.metric.instance).setStatus(r.value[1]);
-    }
-
-}
-
-function exportPos() {
-    for (let node of nodes.values()) {
-        
     }
 }
