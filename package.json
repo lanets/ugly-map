@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon public/server.js",
-    "start": "node public/server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "devDependencies": {
@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "request": "^2.88.0",
-    "vis": "^4.21.0"
+    "request": "^2.88.0"
   }
 }
