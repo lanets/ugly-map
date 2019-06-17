@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const request = require('request');
+const bodyParser = require('body-parser');
 const Datastore = require('nedb');
 
 let db = new Datastore({filename: 'nodes.db', autoload: true});
@@ -9,6 +10,8 @@ let db = new Datastore({filename: 'nodes.db', autoload: true});
 const port = 3000;
 
 app.use(express.static(__dirname + "/public"));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.get("/test", function (req, res) {
     console.log(req);
@@ -22,6 +25,16 @@ app.get("/api/v1/nodes", function (req, res) {
     db.find({}, function (err, docs) {
         res.send(docs);
     })
+});
+
+app.post("/api/v1/nodes", function (req, res) {
+    let data = req.body;
+
+    for (let node of data) {
+        db.update({name: node.instance}, {$set: {pos: node.pos}})
+    }
+    db.loadDatabase();
+    res.send();
 });
 
 function queryProm() {

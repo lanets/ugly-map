@@ -7,9 +7,9 @@ let radius;
 
 let offsetX, offsetY;
 
-function Node(name, x, y) {
+function Node(name, x, y, status) {
     this.name = name;
-    this.status = 0;
+    this.status = status;
     this.x = x;
     this.y = y;
     this.dragging = false;
@@ -19,7 +19,7 @@ function Node(name, x, y) {
 
         let c = color('red');
 
-        if (this.status) {
+        if (this.status === '1') {
             c = color('green');
         }
 
