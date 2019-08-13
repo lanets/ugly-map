@@ -1,16 +1,78 @@
 const URL = "http://localhost:3000/api/v1/nodes";
 
 let nodes = [];
+let canvas;
+let networkMap;
+const mappa = new Mappa('Leaflet');
+let editingMode;
+let b = true;
 
-function preload() {
-    img = loadImage("assets/map.jpg");
-    loadJSON(URL, d => loadNodes(d));
+
+const options = {
+    lat: 75,
+    lng: 25,
+    zoom: 3,
+    style: `tiles/{z}/{x}/{y}.png`
+};
+
+function setup() {
+    canvas = createCanvas(windowWidth, windowHeight);
+    networkMap = mappa.tileMap(options);
+    networkMap.overlay(canvas);
+}
+
+function draw() {
+    clear();
+    editingMode = document.getElementById("editingBox").checked;
+
+
+    if (networkMap.ready) {
+        if (b) {
+            loadJSON(URL, d => loadNodes(d));
+            console.log(networkMap);
+            b = false;
+        }
+
+        if (editingMode) networkMap.map.dragging.disable();
+        if (!editingMode) networkMap.map.dragging.enable();
+
+        for (let node of nodes) {
+            let pos = networkMap.latLngToPixel(node.x, node.y);
+            node.draw(pos.x, pos.y, 50);
+        }
+
+    }
+}
+
+function mouseDragged() {
+    if (editingMode) {
+        for (let node of nodes) {
+            let pos = networkMap.pixelToLatLng(mouseX, mouseY);
+            node.move(pos.lat, pos.lng);
+        }
+    }
+}
+
+function mousePressed() {
+    for (let node of nodes) {
+        let p = networkMap.latLngToPixel(node.x, node.y);
+        if (node.isClicked(p.x, p.y)) {
+            node.activate();
+            break;
+        }
+    }
+}
+
+function mouseReleased() {
+    for (let node of nodes) {
+        node.deactivate();
+    }
 }
 
 function savePositions() {
     console.log("CLICKED");
 
-    var data = [];
+    let data = [];
 
     for (let node of nodes) {
         data.push({
@@ -35,45 +97,22 @@ function savePositions() {
     }).then(res => console.log(res))
 }
 
-
 function loadNodes(obj) {
-    console.log(obj.length);
     nodes = [];
 
     for (let o of obj) {
-        nodes.push(new Node(o.name, o.pos.x, o.pos.y, o.status));
-    }
-}
 
-function setup() {
-    createCanvas(1920, 1080);
-}
-
-function draw() {
-    background(255);
-    image(img,0,0);
-    for (let node of nodes) {
-        node.display();
-    }
-}
-
-function mouseDragged() {
-    for (let node of nodes) {
-        node.move();
-    }
-}
-
-function mousePressed() {
-    for (let node of nodes) {
-        if (node.isClicked()) {
-            node.activate();
-            break;
+        if (o.pos.x === null || o.pos.y === null) {
+            let center = networkMap.map.getCenter();
+            nodes.push(new Node(o.name, center.lat, center.lng, o.status));
+        } else {
+            nodes.push(new Node(o.name, o.pos.x, o.pos.y, o.status));
         }
     }
+    console.log(nodes);
 }
 
-function mouseReleased() {
-    for (let node of nodes) {
-        node.deactivate();
-    }
+function getMouseLatLng() {
+    return networkMap.pixelToLatLng(mouseX, mouseY);
+    ;
 }

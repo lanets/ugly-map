@@ -41,6 +41,7 @@ function queryProm() {
     request('http://172.16.45.19:9090/api/v1/query?query=up', {json: true}, (err, res, body) => {
             let data = body.data.result;
 
+
             for (let i = 0; i < data.length; i++) {
                 let instance = data[i].metric.instance;
                 let status = data[i].value[1];
@@ -52,8 +53,8 @@ function queryProm() {
                             name: instance,
                             status: status,
                             pos: {
-                                x: 0,
-                                y: 0
+                                x: null,
+                                y: null
                             }
                         })
                     }

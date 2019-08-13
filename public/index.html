@@ -1,11 +1,14 @@
 <!doctype html>
-<html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
-    <script src="network.js"></script>
+<html lang="EN">
+<head>
+    <title>Ugly-Map</title>
+    <script src="./dists/p5.min.js"></script>
+    <script src="./dists/mappa.js"></script>
     <script src="Node.js"></script>
-  </head>
-  <body>
-  <input id="clickMe" type="button" value="clickme" onclick="savePositions()" />
-  </body>
+    <script src="network.js"></script>
+</head>
+<body>
+<input id="savePositionsButton" type="button" value="Save positions" onclick="savePositions();"/>
+<input id="editingBox" type="checkbox"> Editing<br>
+</body>
 </html>
