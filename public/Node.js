@@ -15,28 +15,24 @@ function Node(name, x, y, status) {
     this.dragging = false;
     this.radius = 50;
 
-    this.display = function () {
+    if (this.status === '0') this.color = color('red');
+    else if (this.status === '1') this.color = color('green');
 
-        let c = color('red');
+    this.draw = function (x, y ,radius) {
 
-        if (this.status === '1') {
-            c = color('green');
-        }
+        fill(this.color);
 
-        fill(c);
-        circle(this.x, this.y, this.radius);
+        circle(x, y, radius);
 
         textAlign(CENTER, CENTER);
-        text(this.name, this.x, this.y + this.radius);
+        text(this.name, x, y + radius);
 
     };
 
-    this.move = function () {
-        if (this.dragging == true) {
-            let d = dist(mouseX, mouseY, this.x, this.y);
-
-            this.x = mouseX;
-            this.y = mouseY;
+    this.move = function (x, y) {
+        if (this.dragging === true) {
+            this.x = x;
+            this.y = y;
         }
     };
 
@@ -48,12 +44,8 @@ function Node(name, x, y, status) {
         this.dragging = false;
     };
 
-    this.isClicked = function () {
-        let d = dist(mouseX, mouseY, this.x, this.y);
-        return (d < this.radius ? true : false);
-    };
-
-    this.setStatus = function (status) {
-        this.status = status;
+    this.isClicked = function (x, y) {
+        let d = dist(x, y, mouseX, mouseY);
+        return (d < this.radius);
     };
 }
