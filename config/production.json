@@ -1,0 +1,9 @@
+{
+  "prometheus": {
+    "url": "http://x.x.x.x:9000"
+  },
+  "map": {
+    "url": "http://x.x.x.x:3000"
+  }
+}
+
