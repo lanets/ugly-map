@@ -4,10 +4,10 @@ const path = require("path");
 const request = require('request');
 const bodyParser = require('body-parser');
 const Datastore = require('nedb');
-
+const config = require('./config');
 let db = new Datastore({filename: 'nodes.db', autoload: true});
 
-const port = 3000;
+const port = config.map.port || 3000;
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -38,7 +38,7 @@ app.post("/api/v1/nodes", function (req, res) {
 });
 
 function queryProm() {
-    request('http://172.16.45.19:9090/api/v1/query?query=up', {json: true}, (err, res, body) => {
+    request(config.prometheus.url + '/api/v1/query?query=up', {json: true}, (err, res, body) => {
             let data = body.data.result;
 
 
@@ -66,6 +66,6 @@ function queryProm() {
     );
 }
 
-setInterval(queryProm, 1000);
+//setInterval(queryProm, 1000);
 
-app.listen(3000);
+app.listen(port);

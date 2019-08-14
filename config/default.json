@@ -1,9 +1,5 @@
 {
   "prometheus": {
     "url": "http://localhost:9000"
-  },
-  "map": {
-    "url": "http://localhost:3000"
   }
 }
-
