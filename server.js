@@ -7,7 +7,7 @@ const Datastore = require('nedb');
 const config = require('./config');
 let db = new Datastore({filename: 'nodes.db', autoload: true});
 
-const port = config.map.port || 3000;
+const port = config.port || 3000;
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: false}));

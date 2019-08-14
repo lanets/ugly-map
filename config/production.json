@@ -1,4 +1,5 @@
 {
+  "port": "3000",
   "prometheus": {
     "url": "http://x.x.x.x:9000"
   }
