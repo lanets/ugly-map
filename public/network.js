@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000/api/v1/nodes";
+const URL = "/api/v1/nodes";
 
 let nodes = [];
 let canvas;
@@ -110,9 +110,4 @@ function loadNodes(obj) {
         }
     }
     console.log(nodes);
-}
-
-function getMouseLatLng() {
-    return networkMap.pixelToLatLng(mouseX, mouseY);
-    ;
 }

@@ -1,7 +1,7 @@
 version: '3.3'
 services:
-  node_basic:
-    image: ugly-map/node_basic
+  node:
+    image: ugly-map/node
     build: .
     ports:
       - 3000:3000
