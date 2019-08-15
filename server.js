@@ -38,9 +38,11 @@ app.post("/api/v1/nodes", function (req, res) {
 });
 
 function queryProm() {
-    request(config.prometheus.url + '/api/v1/query?query=up', {json: true}, (err, res, body) => {
-            let data = body.data.result;
 
+    request(config.prometheus.url + '/api/v1/query?query=up', {json: true}, (err, res, body) => {
+	    
+    try {
+	let data = body.data.result;
 
             for (let i = 0; i < data.length; i++) {
                 let instance = data[i].metric.instance;
@@ -62,10 +64,13 @@ function queryProm() {
                 db.update({name: instance}, {$set: {status: status}});
             }
             db.loadDatabase();
-        }
-    );
+    } catch(err) {
+        console.error(err);
+    }
 }
 
-//setInterval(queryProm, 1000);
+    );
+}
+setInterval(queryProm, 1000);
 
 app.listen(port);
