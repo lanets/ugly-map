@@ -24,6 +24,7 @@ function setup() {
 function draw() {
     clear();
     editingMode = document.getElementById("editingBox").checked;
+    displayNames = document.getElementById("displayNamesBox").checked;
 
 
     if (networkMap.ready) {
@@ -37,8 +38,9 @@ function draw() {
         if (!editingMode) networkMap.map.dragging.enable();
 
         for (let node of nodes) {
+            node.displayNames = displayNames;
             let pos = networkMap.latLngToPixel(node.x, node.y);
-            node.draw(pos.x, pos.y, 50);
+            node.draw(pos.x, pos.y, 20*log(networkMap.map.getZoom()));
         }
 
     }
