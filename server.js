@@ -39,7 +39,7 @@ app.post("/api/v1/nodes", function (req, res) {
 
 function queryProm() {
 
-    request(config.prometheus.url + "/api/v1/query?query=probe_success{instance=~'d[0-9].event.dhmtl.ca|(.*).sw.dhmtl.ca'}", {json: true}, (err, res, body) => {
+    request(config.prometheus.url + "/api/v1/query?query=probe_success{instance=~'d[0-9].event.dhmtl.ca|(.*).sw.dhmtl.ca', job='blackbox-ping'}", {json: true}, (err, res, body) => {
 	    
     try {
 	let data = body.data.result;
