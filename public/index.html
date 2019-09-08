@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="EN">
+
 <head>
     <title>Ugly-Map</title>
     <script src="./dists/p5.min.js"></script>
@@ -7,9 +8,30 @@
     <script src="Node.js"></script>
     <script src="network.js"></script>
 </head>
+
 <body>
-<input id="savePositionsButton" type="button" value="Save positions" onclick="savePositions();"/>
-<input id="displayNamesBox" type="checkbox"> Names
-<input id="editingBox" type="checkbox"> Editing<br>
+    <div class="actions">
+    <input id="savePositionsButton" type="button" value="Save positions" onclick="savePositions();" />
+    <input id="displayNamesBox" type="checkbox"> Names
+    <input id="editingBox" type="checkbox"> Editing
+    <input id="refreshingBox" type="checkbox"> Refresh<br>
+    </div>
+    <style>
+        .leaflet-container {
+            background: #000000 !important;
+        }
+        .actions {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            z-index: 500;
+            color: white;
+            font-family: 'Roboto', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        body {
+            margin: 0;
+        }
+    </style>
 </body>
+
 </html>

@@ -6,12 +6,12 @@ let networkMap;
 const mappa = new Mappa('Leaflet');
 let editingMode;
 let b = true;
-
+let refreshing;
 
 const options = {
-    lat: 75,
-    lng: 25,
-    zoom: 3,
+    lat: 72,
+    lng: -55,
+    zoom: 3.3,
     style: `tiles/{z}/{x}/{y}.png`
 };
 
@@ -19,12 +19,19 @@ function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
     networkMap = mappa.tileMap(options);
     networkMap.overlay(canvas);
+    background('BLACK');
+    setInterval(function(){
+        if(refreshing) loadJSON(URL, d => loadNodes(d));
+    }, 5000);
+
 }
 
 function draw() {
     clear();
     editingMode = document.getElementById("editingBox").checked;
     displayNames = document.getElementById("displayNamesBox").checked;
+    refreshing = document.getElementById("refreshingBox").checked;
+
 
 
     if (networkMap.ready) {
@@ -42,7 +49,6 @@ function draw() {
             let pos = networkMap.latLngToPixel(node.x, node.y);
             node.draw(pos.x, pos.y, 20*log(networkMap.map.getZoom()));
         }
-
     }
 }
 

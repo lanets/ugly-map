@@ -18,6 +18,7 @@ function Node(name, x, y, status) {
 
     if (this.status === '0') this.color = color('red');
     else if (this.status === '1') this.color = color('green');
+    else if (this.status === '2') this.color = color('gray');
 
     this.displayName = name.split('.')[0];
 
