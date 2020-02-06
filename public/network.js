@@ -23,7 +23,6 @@ function setup() {
     setInterval(function(){
         if(refreshing) loadJSON(URL, d => loadNodes(d));
     }, 5000);
-
 }
 
 function draw() {
@@ -31,8 +30,6 @@ function draw() {
     editingMode = document.getElementById("editingBox").checked;
     displayNames = document.getElementById("displayNamesBox").checked;
     refreshing = document.getElementById("refreshingBox").checked;
-
-
 
     if (networkMap.ready) {
         if (b) {

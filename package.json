@@ -1,8 +1,13 @@
 {
   "name": "ugly-map",
   "version": "0.0.1",
-  "description": "",
+  "description": "Deploy a map for monitoring.",
   "main": "server.js",
+  "license" : "WTFPL",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justereseau/ugly-map.git"
+  },
   "scripts": {
     "dev": "nodemon server.js",
     "start": "NODE_ENV=production node server.js"
