@@ -13,20 +13,23 @@ function Node(name, x, y, status) {
     this.x = x;
     this.y = y;
     this.dragging = false;
+    this.displayNames = false;
     this.radius = 50;
 
     if (this.status === '0') this.color = color('red');
     else if (this.status === '1') this.color = color('green');
+    else if (this.status === '2') this.color = color('gray');
 
-    this.draw = function (x, y ,radius) {
+    this.displayName = name.split('.')[0];
+
+    this.draw = function (x, y , radius) {
 
         fill(this.color);
 
         circle(x, y, radius);
 
         textAlign(CENTER, CENTER);
-        text(this.name, x, y + radius);
-
+        if (this.displayNames) text(this.displayName, x, y + radius);
     };
 
     this.move = function (x, y) {
