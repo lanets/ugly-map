@@ -5,7 +5,7 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const Datastore = require('nedb');
 const config = require('./config');
-let db = new Datastore({ filename: 'nodes.db', autoload: true });
+let db = new Datastore({ filename: './data/nodes.db', autoload: true });
 
 const port = config.port || 3000;
 
