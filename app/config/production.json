@@ -1,7 +1,7 @@
 {
   "port": "3000",
   "prometheus": {
-    "url": "http://prometheus.event.lanets.ca:9090"
+    "url": "http://eventprometheus01.lanets.ca:9090"
   }
 }
 
