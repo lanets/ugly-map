@@ -11,3 +11,4 @@ services:
       - ./app/server.js:/usr/src/app/server.js
       - ./data:/usr/src/app/data
     command: npm run start
+    restart: unless-stopped
