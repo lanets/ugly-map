@@ -39,7 +39,7 @@ app.post("/api/v1/nodes", function (req, res) {
 
 function queryProm() {
 
-    request(config.prometheus.url + "/api/v1/query?query=probe_success{instance=~'[axs|d](.*)', job='blackbox-ping'}", { json: true }, (err, res, body) => {
+    request(config.prometheus.url + "/api/v1/query?query=probe_success{instance=~'axs-.*|d.*', job='blackbox-ping'}", { json: true }, (err, res, body) => {
 
         try {
             let data = body.data.result;
