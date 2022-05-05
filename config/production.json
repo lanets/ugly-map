@@ -1,7 +1,0 @@
-{
-  "port": "3000",
-  "prometheus": {
-    "url": "http://um.event.dhmtl.ca:9090"
-  }
-}
-

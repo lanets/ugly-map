@@ -6,5 +6,9 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - .:/usr/src/app
+      - ./app/config:/usr/src/app/config
+      - ./app/public:/usr/src/app/public
+      - ./app/server.js:/usr/src/app/server.js
+      - ./data:/usr/src/app/data
     command: npm run start
+    restart: unless-stopped

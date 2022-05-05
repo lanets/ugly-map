@@ -2,8 +2,8 @@ FROM node:10
 
 WORKDIR /usr/src/app
 
-COPY package.json .
-COPY package-lock.json .
+COPY ./app/package.json .
+COPY ./app/package-lock.json .
 RUN npm install
 
 EXPOSE 3000
